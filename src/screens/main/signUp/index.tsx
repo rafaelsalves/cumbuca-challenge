@@ -48,10 +48,12 @@ const SignUp = (props) => {
     const onPressCreateAccount = async (typedCpf: string, typedPassword: string) => {
         try {
             setLoading(true)
+            //await Keychain.setGenericPassword(typedCpf, typedPassword)
             setLoading(false)
             navigation.goBack()
-            showToast({ type: 'success', message: 'Em breve entraremos em contato com você!' })
+            showToast({ type: 'success', message: 'O cadastro foi realizado com sucesso!' })
         } catch (error) {
+            console.log(error)
             setLoading(false)
             showToast({ message: 'Houve um problema, tente novamente!' })
         }

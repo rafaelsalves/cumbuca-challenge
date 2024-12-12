@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MaskService } from 'react-native-masked-text'
 import { useNavigation } from '@react-navigation/native'
+import BootSplash from 'react-native-bootsplash'
 
 import LoginView from './view'
 
@@ -16,6 +17,14 @@ const LoginScreen = () => {
     const [isLoading, setLoading] = useState(false)
 
     const navigation = useNavigation()
+
+    useEffect(() => {
+        onLoad()
+    }, [])
+
+    const onLoad = () => {
+        BootSplash.hide({ fade: true })
+    }
 
     const onChangeCPF = (text: string) => {
         setErrorCpf('')

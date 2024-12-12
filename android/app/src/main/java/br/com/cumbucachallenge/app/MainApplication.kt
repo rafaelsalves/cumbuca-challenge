@@ -1,4 +1,4 @@
-package com.metamind
+package br.com.cumbucachallenge.app
 
 import android.app.Application
 import com.facebook.react.PackageList
