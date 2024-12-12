@@ -16,7 +16,7 @@ const SignUpView = (props) => {
         cpf, errorCpf, onChangeCPF,
         password, errorPassword, onChangePassword,
         onBlur,
-        onPressCreateAccount,
+        onPressCreateAccount
     } = props
     const isEnabledCreate =
         !isEmpty(cpf) &&
@@ -46,16 +46,6 @@ const SignUpView = (props) => {
                             value={password}
                             onChangeText={(text) => onChangePassword(text)}
                             placeholder='Insira uma senha'
-                            placeholderTextColor='gray'
-                            error={errorPassword}
-                            secureTextEntry={true}
-                            onBlur={() => onBlur(password, 'password')}
-                        />
-                        <TextInputComponent
-                            title={'CONFIRMAR SENHA'}
-                            value={password}
-                            onChangeText={(text) => onChangePassword(text)}
-                            placeholder='Repita a senha para confirmar'
                             placeholderTextColor='gray'
                             error={errorPassword}
                             secureTextEntry={true}

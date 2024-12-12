@@ -1,24 +1,51 @@
 import { useState } from "react"
+import { MaskService } from "react-native-masked-text"
 
-import { showToast } from "@helpers/functions"
+import { isEmpty, isValidCPF, showToast } from "@helpers/functions"
 
 import SignUpView from "./view"
 
 const SignUp = (props) => {
     const navigation = props.navigation
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [errorCpf, setErrorCpf] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorPassword, setErrorPassword] = useState('')
     const [isLoading, setLoading] = useState(false)
 
-    const onChangeName = (newText: string) => {
-        setName(newText)
+    const onChangeCPF = (text: string) => {
+        setErrorCpf('')
+        setCpf(MaskService.toMask('cpf', text, {}))
     }
 
-    const onChangeEmail = (newText: string) => {
-        setEmail(newText)
+    const onChangePassword = (text) => {
+        setErrorPassword('')
+        setPassword(text)
     }
 
-    const onPressSend = async (typedEmail: string, typedName: string) => {
+    const onBlur = (text, field) => {
+        switch (field) {
+            case 'cpf':
+                if (isEmpty(text)) {
+                    setErrorCpf('INFORME SEU CPF')
+                }
+                else if (!isValidCPF(text)) {
+                    setErrorCpf('CPF INVÁLIDO')
+                } else {
+                    setErrorCpf('')
+                }
+                break
+
+            case 'password':
+                setErrorPassword(text.length < 8 ? 'SUA SENHA DEVE TER NO MÍNIMO 8 CARACTERES' : '')
+                break
+
+            default:
+                break
+        }
+    }
+
+    const onPressCreateAccount = async (typedCpf: string, typedPassword: string) => {
         try {
             setLoading(true)
             setLoading(false)
@@ -31,7 +58,11 @@ const SignUp = (props) => {
     }
 
     const viewProps = {
-        isLoading, name, email, onChangeEmail, onPressSend, onChangeName,
+        isLoading,
+        cpf, errorCpf, onChangeCPF,
+        password, errorPassword, onChangePassword,
+        onBlur,
+        onPressCreateAccount
     }
 
     return <SignUpView {...viewProps} />
