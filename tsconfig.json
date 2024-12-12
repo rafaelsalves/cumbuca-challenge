@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "plugins": [{
+		  "name": "typescript-styled-plugin"
+		}],
+    "experimentalDecorators": true,
+    "paths": {
+			"@assets/*": ["./src/global/assets/*"],
+			"@components/*": ["./src/global/components/*"],
+      "@config*": ["./src/global/config/*"],
+			"@helpers/*": ["./src/global/helpers/*"],
+			"@models/*": ["./src/global/models/*"],
+			"@routes/*": ["./src/global/routes/*"],
+			"@services/*": ["./src/global/services/*"],
+			"@screens/*": ["./src/screens/*"],
+			"@src/*": ["./src/*"]
+		},
+		"target": "esnext",
+		"module": "esNext",
+		"lib": ["es2015", "es2017", "dom", "esnext"],
+		"moduleResolution": "node",
+		"strict": true,
+		"jsx": "react-native",
+		"outDir": "dist",
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": false,
+		"sourceMap": true,
+		"removeComments": true,
+		"pretty": true
+  },
+  "types": ["src/global/types"],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    "android",
+    "ios",
+    "dist"
+  ],
+  "include": [
+    "src",
+    "__tests__"
+  ]
+}

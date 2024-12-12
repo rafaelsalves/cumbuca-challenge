@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"plugins": [{
+		  "name": "typescript-styled-plugin"
+		}],
+		"experimentalDecorators": true,
+		"baseUrl": ".",
+            "@assets/*": ["./src/global/assets/*"],
+            "@components/*": ["./src/global/components/*"],
+			"@config*": ["./src/global/config/*"],
+            "@helpers/*": ["./src/global/helpers/*"],
+            "@models/*": ["./src/global/models/*"],
+            "@routes/*": ["./src/global/routes/*"],
+            "@services/*": ["./src/global/services/*"],
+            "@screens/*": ["./src/screens/*"],
+            "@src/*": ["./src/*"]
+		},
+		"target": "esnext",
+		"module": "esNext",
+		"lib": ["es2015", "es2017", "dom", "esnext"],
+		"moduleResolution": "node",
+		"strict": true,
+		"jsx": "react-native",
+		"outDir": "dist",
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": false,
+		"sourceMap": true,
+		"removeComments": true,
+		"pretty": true
+	},
+	"exclude": ["android", "ios", "dist", "node_modules"]
+}

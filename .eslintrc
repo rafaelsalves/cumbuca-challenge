@@ -1,0 +1,174 @@
+{
+	"parser": "@babel/eslint-parser",
+	"overrides": [
+		{
+			"files": "**/*.+(ts|tsx)",
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"project": "./tsconfig.json",
+				"requireConfigFile": false
+			},
+			"plugins": [
+				"@typescript-eslint"
+			],
+			"settings": {
+				"import/resolver": {
+					"node": {
+						"extensions": [
+							".json",
+							".ts",
+							".tsx"
+						]
+					}
+				}
+			},
+			"rules": {
+				"react/jsx-filename-extension": [
+					1,
+					{
+						"extensions": [
+							".ts",
+							".tsx"
+						]
+					}
+				],
+				"no-control-regex": "off"
+			}
+		}
+	],
+	"plugins": [
+		"react-hooks",
+		"import",
+		"prettier",
+		"react",
+		"jest",
+		"unused-imports"
+	],
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"env": {
+		"es6": true,
+		"browser": false,
+		"node": true,
+		"jquery": false,
+		"jest": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"prettier"
+	],
+	"settings": {
+		"import/ignore": [
+			"react-native"
+		],
+		"import/resolver": {
+			"node": {
+				"extensions": [
+					".js",
+					".jsx",
+					".json",
+					".ts"
+				]
+			},
+			// "babel-plugin-root-import": {}
+			"babel-plugin-root-import": {
+				"paths": [
+					{
+						"rootPathSuffix": "src/global/assets",
+						"rootPathPrefix": "@assets"
+					},
+					{
+						"rootPathSuffix": "src/global/components",
+						"rootPathPrefix": "@components"
+					},
+					{
+						"rootPathSuffix": "src/global/config",
+						"rootPathPrefix": "@config"
+					},
+					{
+						"rootPathSuffix": "src/global/models",
+						"rootPathPrefix": "@models"
+					},
+					{
+						"rootPathSuffix": "src/global/helpers",
+						"rootPathPrefix": "@helpers"
+					},
+					{
+						"rootPathSuffix": "src/global/routes",
+						"rootPathPrefix": "@routes"
+					},
+					{
+						"rootPathSuffix": "src/screens",
+						"rootPathPrefix": "@screens'"
+					},
+					{
+						"rootPathSuffix": "src/global/services",
+						"rootPathPrefix": "@services"
+					},
+					{
+						"rootPathSuffix": "src",
+						"rootPathPrefix": "~"
+					}
+				]
+			}
+		}
+	},
+	"rules": {
+		// REACT
+		//"react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+		"react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+		"no-prototype-builtins": "off",
+		"unused-imports/no-unused-imports": "error",
+		"react/prop-types": [
+			"off"
+		],
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".js",
+					".jsx"
+				]
+			}
+		],
+		"import/default": "off",
+		"import/no-unresolved": "off",
+		"quotes": [
+			"error",
+			"single",
+			{
+				"avoidEscape": true
+			}
+		],
+		"semi": 0,
+		"no-debugger": 1,
+		"no-var": 1,
+		"no-trailing-spaces": 0,
+		"eol-last": 0,
+		"no-underscore-dangle": 0,
+		"no-alert": 0,
+		"no-undef": 0,
+		"no-lone-blocks": 0,
+		"no-unused-vars": "off",
+		"import/extensions": 1,
+		"import/no-named-as-default": 0,
+		"no-console": 2,
+		"prettier/prettier": [
+			"error",
+			{
+				"singleQuote": true
+			}
+		]
+	},
+	"globals": {
+		"Atomics": false,
+		"SharedArrayBuffer": false
+	}
+}

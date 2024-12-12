@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "498166534397",
+    "project_id": "oxford-dev-14adb",
+    "storage_bucket": "oxford-dev-14adb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498166534397:android:83709e75d95a9f42b42e94",
+        "android_client_info": {
+          "package_name": "br.com.febracis.pvresponde"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdhWf-IkVb8a8uGVrprZb387aPAwd9Tog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
