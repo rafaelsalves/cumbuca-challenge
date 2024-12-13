@@ -10,12 +10,15 @@ import { Container, InputsView } from "./style"
 const NewProductView = (props) => {
     const {
         productName,
+        errorName,
         quantity,
+        errorQuantity,
         price,
         onChangeProductName,
         onChangeQuantity,
         onChangePrice,
         onPressSave,
+        onBlur,
     } = props
     const formattedUnityPrice = price.toString().replace(/[^0-9]+/g, "")
     const isEnableSave = !isEmpty(productName) && quantity > 0 && formattedUnityPrice > 0
@@ -29,12 +32,16 @@ const NewProductView = (props) => {
                     placeholder="Nome do produto"
                     value={productName}
                     onChangeText={(text) => onChangeProductName(text)}
+                    error={errorName}
+                    onBlur={() => onBlur(productName, 'name')}
                 />
                 <TextInputComponent
                     title="Quantidade"
                     placeholder="Quantidade do produto"
                     value={quantity}
+                    error={errorQuantity}
                     keyboardType="number-pad"
+                    onBlur={() => onBlur(quantity, 'quantity')}
                     onChangeText={(text) => onChangeQuantity(text)}
                 />
                 <TextInputComponent
@@ -42,6 +49,7 @@ const NewProductView = (props) => {
                     placeholder="Preço por unidade"
                     value={price}
                     keyboardType="numeric"
+                    onBlur={() => onBlur(price, 'unityPrice')}
                     onChangeText={(text) => onChangePrice(text)}
                 />
                 <ButtonComponent

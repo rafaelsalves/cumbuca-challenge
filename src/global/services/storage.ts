@@ -19,6 +19,23 @@ type Login = {
     password: string
     lastAccess: string
 }
+
+const getAvailableId = async (products) => {
+    const existingIds = products.map(product => product.id)
+    existingIds.sort((id1, id2) => id1 - id2)
+    let nextId = 1
+
+    for (const id of existingIds) {
+        if (id === nextId) {
+            nextId++
+        } else {
+            break
+        }
+    }
+
+    return nextId
+}
+
 export const saveLogin = async (login: Login) => {
     await saveItemByKey(keys.login, login)
 }
@@ -37,7 +54,8 @@ export const getProducts = async () => {
 
 export const addProduct = async (newProduct: Product) => {
     let products = await getProducts()
-    products.push({ ...newProduct, id: products.length + 1 })
+    const productId = await getAvailableId(products)
+    products.push({ ...newProduct, id: productId })
     await saveItemByKey(keys.products, products)
 }
 
@@ -50,9 +68,14 @@ export const removeProduct = async (productId: number) => {
 
 export const changeQuantityProduct = async (productId: number, newQuantity: number) => {
     let products = await getProducts()
-    let productToChange = products.find((item) => item.id === productId)
-    productToChange.quantity = newQuantity
-    await saveItemByKey(keys.products, products)
+    if(newQuantity === 0) {
+        return await removeProduct(productId)
+    } else {
+        let productToChange = products.find((item) => item.id === productId)
+        productToChange.quantity = newQuantity
+        await saveItemByKey(keys.products, products)
+    }
+
     return products
 }
 

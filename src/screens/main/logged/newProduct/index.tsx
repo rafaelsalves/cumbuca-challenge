@@ -2,14 +2,16 @@ import { useEffect, useState } from "react"
 import { MaskService } from "react-native-masked-text"
 
 import storage from '@services/storage'
+import { isEmpty, showToast } from "@helpers/functions"
 
 import NewProductView from "./view"
-import { showToast } from "@helpers/functions"
 
 const NewProduct = () => {
     const [productName, setProductName] = useState<string>('')
     const [quantity, setQuantity] = useState<string>('')
     const [price, setPrice] = useState<string>('')
+    const [errorName, setErrorName] = useState<string>('')
+    const [errorQuantity, setErrorQuantity] = useState<string>('')
 
     useEffect(() => {
         onLoad()
@@ -20,10 +22,12 @@ const NewProduct = () => {
 
     const onChangeProductName = (text: string) => {
         setProductName(text)
+        setErrorName('')
     }
 
     const onChangeQuantity = (newQuantity: string) => {
         setQuantity(newQuantity.replace(/[^0-9]/g, ''))
+        setErrorQuantity('')
     }
 
     const onChangePrice = (newPrice: string) => {
@@ -53,10 +57,36 @@ const NewProduct = () => {
         }
     }
 
+    const onBlur = (text, field) => {
+        switch (field) {
+            case 'name':
+                if (isEmpty(text)) {
+                    setErrorName('Insira um nome para o produto')
+                } else {
+                    setErrorName('')
+                }
+                break
+
+            case 'quantity':
+                if (isEmpty(text) || text === '0') {
+                    setErrorQuantity('O produto deve ter pelo menos um item')
+                } else {
+                    setErrorQuantity('')
+                }
+                break
+
+            default:
+                break
+        }
+    }
+
     const viewProps = {
         productName,
         quantity,
         price,
+        errorName,
+        errorQuantity,
+        onBlur,
         onChangeProductName,
         onChangeQuantity,
         onChangePrice,

@@ -26,11 +26,11 @@ const LoginScreen = () => {
     const onLoad = async () => {
         try {
             const credentials = await Keychain.getGenericPassword({
-                accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
+                accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,
             })
 
             if (credentials) {
-                navigation.replace(PathRoutes.PRODUCT_MANAGER)
+                navigation.navigate(PathRoutes.PRODUCT_MANAGER)
             } else {
                 BootSplash.hide({ fade: true })
             }
@@ -84,7 +84,7 @@ const LoginScreen = () => {
                     return
                 }
 
-                navigation.navigate(PathRoutes.PRODUCT_MANAGER)
+                navigation.replace(PathRoutes.PRODUCT_MANAGER)
             }
             setLoading(false)
         } catch (error) {

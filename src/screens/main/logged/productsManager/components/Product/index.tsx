@@ -17,6 +17,7 @@ type ProductProps = {
 }
 const Product = (props: ProductProps) => {
     const {
+        id,
         name = '',
         unityPrice = 0,
         quantity = 0,
@@ -28,6 +29,7 @@ const Product = (props: ProductProps) => {
     return (
         <Container>
             <LeftView>
+                <TextComponent fontSize={10}>ID: {id}</TextComponent>
                 <TextComponent fontWeight={'bold'}>{name}</TextComponent>
                 <TextComponent fontSize={10}>Preço Unit: R$ {formatToMoney(unityPrice)}</TextComponent>
                 <AddRemoveComponent onPressAdd={onPressAdd} onPressRemove={onPressRemove} quantity={quantity} />

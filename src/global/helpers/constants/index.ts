@@ -26,13 +26,3 @@ export const defaultHeaderStyle = {
     headerBackTitle: ' ',
     headerBackTitleStyle: { color: 'transparent' },
 }
-
-export const PERMISSIONS_TYPES = {
-    USER: 'USER',
-}
-
-export const LEVELS = {
-    EASY: 'EASY',
-    MEDIUM: 'MEDIUM',
-    HARD: 'HARD',
-}

@@ -57,6 +57,8 @@ const App = () => {
 					component={ProductsManager}
 					options={{
 						headerBackTitle: ' ',
+						headerLeft: () => null,
+						gestureEnabled: false,
 						title: 'PRODUTOS',
 						headerTintColor: colors.BLUE,
 					}}

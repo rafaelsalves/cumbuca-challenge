@@ -51,11 +51,16 @@ const SignUp = (props) => {
     const onPressCreateAccount = async (typedCpf: string, typedPassword: string) => {
         try {
             setLoading(true)
-            console.log(moment(new Date()).format('DD/MM/YYYY hh:mm:ss'))
+
             await storage.saveLogin({
                 cpf: typedCpf,
                 password: typedPassword,
                 lastAccess: moment(new Date()).format('DD/MM/YYYY hh:mm:ss')
+            })
+
+            await Keychain.setGenericPassword(typedCpf, typedPassword, {
+                accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,
+                accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
             })
             setLoading(false)
             navigation.goBack()
