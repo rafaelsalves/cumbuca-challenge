@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { MaskService } from "react-native-masked-text"
+import * as Keychain from 'react-native-keychain'
 
 import { isEmpty, isValidCPF, showToast } from "@helpers/functions"
 
 import SignUpView from "./view"
+import storage from "@services/storage"
+import moment from "moment"
 
 const SignUp = (props) => {
     const navigation = props.navigation
@@ -48,7 +51,12 @@ const SignUp = (props) => {
     const onPressCreateAccount = async (typedCpf: string, typedPassword: string) => {
         try {
             setLoading(true)
-            //await Keychain.setGenericPassword(typedCpf, typedPassword)
+            console.log(moment(new Date()).format('DD/MM/YYYY hh:mm:ss'))
+            await storage.saveLogin({
+                cpf: typedCpf,
+                password: typedPassword,
+                lastAccess: moment(new Date()).format('DD/MM/YYYY hh:mm:ss')
+            })
             setLoading(false)
             navigation.goBack()
             showToast({ type: 'success', message: 'O cadastro foi realizado com sucesso!' })

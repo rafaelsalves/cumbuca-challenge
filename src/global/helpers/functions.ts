@@ -60,5 +60,15 @@ export const convertToClearedString = (value: string) => {
 }
 
 export const isValidCPF = (text: string): boolean => {
-    return  MaskService.isValid('cpf', text)
+	return MaskService.isValid('cpf', text)
+}
+
+export const formatToMoney = (value: number) => {
+	return MaskService.toMask('money', (`${value}`), {
+		precision: 2,
+		separator: ',',
+		delimiter: '.',
+		unit: 'R$',
+		suffixUnit: ''
+	})
 }

@@ -1,15 +1,17 @@
-import React from 'react'
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import {
-	TransitionPresets,
 	createStackNavigator,
 } from '@react-navigation/stack'
+import React from 'react'
 
-import PathRoutes from '@routes/PathRoutes'
 import colors from '@assets/colors'
+import PathRoutes from '@routes/PathRoutes'
 
+import NewProduct from '@screens/main/logged/newProduct'
+import ProductsManager from '@screens/main/logged/productsManager'
+import Settings from '@screens/main/logged/settings'
 import SignIn from '@screens/main/signIn/login'
-import EmailCollection from '@screens/main/signUp'
+import SignUp from '@screens/main/signUp'
 
 const Stack = createStackNavigator()
 
@@ -42,7 +44,7 @@ const App = () => {
 				/>
 				<Stack.Screen
 					name={PathRoutes.SIGN_UP}
-					component={EmailCollection}
+					component={SignUp}
 					options={{
 						headerBackTitle: ' ',
 						title: '',
@@ -51,12 +53,29 @@ const App = () => {
 					}}
 				/>
 				<Stack.Screen
-					name={PathRoutes.SIGN_UP_EMAIL_COLLECTION}
-					component={EmailCollection}
+					name={PathRoutes.PRODUCT_MANAGER}
+					component={ProductsManager}
 					options={{
 						headerBackTitle: ' ',
-						title: '',
-						headerTransparent: true,
+						title: 'PRODUTOS',
+						headerTintColor: colors.BLUE,
+					}}
+				/>
+				<Stack.Screen
+					name={PathRoutes.NEW_PRODUCT}
+					component={NewProduct}
+					options={{
+						headerBackTitle: ' ',
+						title: 'CADASTRO DE PRODUTO',
+						headerTintColor: colors.BLUE,
+					}}
+				/>
+				<Stack.Screen
+					name={PathRoutes.SETTINGS}
+					component={Settings}
+					options={{
+						headerBackTitle: ' ',
+						title: 'CONFIGURAÇOES',
 						headerTintColor: colors.BLUE,
 					}}
 				/>

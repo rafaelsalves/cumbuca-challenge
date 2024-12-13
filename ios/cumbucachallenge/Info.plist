@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -35,6 +39,8 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Precisamos do acesso a biometria para guardar de forma segura seus dados de acesso</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Black.otf</string>

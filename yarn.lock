@@ -6084,6 +6084,11 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+moment@^2.30.1:
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -6767,6 +6772,11 @@ react-native-is-edge-to-edge@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.1.6.tgz#69ec13f70d76e9245e275eed4140d0873a78f902"
   integrity sha512-1pHnFTlBahins6UAajXUqeCOHew9l9C2C8tErnpGC3IyLJzvxD+TpYAixnCbrVS52f7+NvMttbiSI290XfwN0w==
+
+react-native-keychain@^9.2.2:
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-9.2.2.tgz#45449fadfbe96b35a2e1470f8a9c40a0c22edbe5"
+  integrity sha512-sATwVC76fEl4fsdBsgzG6lwhUhKduK0yqPBKHQRrJlv/2/HFBLXc4yLk9SKnZdgVHCpBxIEX4obMyMcu3HBh9w==
 
 react-native-masked-text@^1.13.0:
   version "1.13.0"

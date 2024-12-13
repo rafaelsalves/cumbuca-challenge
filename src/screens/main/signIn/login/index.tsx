@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { MaskService } from 'react-native-masked-text'
 import { useNavigation } from '@react-navigation/native'
 import BootSplash from 'react-native-bootsplash'
+import * as Keychain from 'react-native-keychain'
 
 import LoginView from './view'
 
-import { isEmpty, isValidCPF } from '@helpers/functions'
+import { isEmpty, isValidCPF, showToast } from '@helpers/functions'
 import PathRoutes from '@routes/PathRoutes'
 import storage from '@services/storage'
 
@@ -22,8 +23,21 @@ const LoginScreen = () => {
         onLoad()
     }, [])
 
-    const onLoad = () => {
-        BootSplash.hide({ fade: true })
+    const onLoad = async () => {
+        try {
+            const credentials = await Keychain.getGenericPassword({
+                accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY_OR_DEVICE_PASSCODE,
+            })
+
+            if (credentials) {
+                navigation.replace(PathRoutes.PRODUCT_MANAGER)
+            } else {
+                BootSplash.hide({ fade: true })
+            }
+        } catch (error) {
+            console.log(error)
+            BootSplash.hide({ fade: true })
+        }
     }
 
     const onChangeCPF = (text: string) => {
@@ -61,8 +75,17 @@ const LoginScreen = () => {
     const onPressLogin = async (typedCpf, typedPassword) => {
         try {
             setLoading(true)
+            const login = await storage.getLogin()
 
-            navigation.navigate(PathRoutes.LOGGED)
+            if (!isEmpty(login)) {
+                if ((typedCpf != login.cpf) || (login.password != typedPassword)) {
+                    showToast({ message: 'Usuário ou senha incorretos' })
+                    setLoading(false)
+                    return
+                }
+
+                navigation.navigate(PathRoutes.PRODUCT_MANAGER)
+            }
             setLoading(false)
         } catch (error) {
             setLoading(false)

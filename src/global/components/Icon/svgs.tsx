@@ -15,7 +15,8 @@ export type IconName = 'caution' |
     'eyeOpened' |
     'eyeClosed' |
     'info' |
-    'logout'
+    'logout' |
+    'menu'
 
 const icons: Record<string, IconType> = {
     caution: {
@@ -126,6 +127,20 @@ const icons: Record<string, IconType> = {
             </G>
         ),
         viewBox: '0 0 19 19',
+    },
+    menu: {
+        svg: (
+            <G>
+                <Path
+                    d="M3 12H21M3 6H21M9 18H21"
+                    stroke="#256AE3"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </G>
+        ),
+        viewBox: '0 0 24 24'
     },
 }
 

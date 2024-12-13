@@ -1,65 +1,71 @@
 import { saveItemByKey, getItemByKey } from '@models/LocalStorageModel'
 
+import { isEmpty } from '@helpers/functions'
+
 const keys = {
-    auth: 'AUTH',
-    avatar: 'AVATAR',
-    user: 'USER',
     login: 'LOGIN',
-    historyMaas: 'HISTORY_MAAS',
-    historyCrashState: 'HISTORY_CRASH_STATE',
+    products: 'PRODUCTS',
 }
 
-type AuthProps = {
-    access_token: string
-    refresh_token: string
-}
-export const setAuth = async (auth: AuthProps | string) => {
-    await saveItemByKey(keys.auth, auth)
-}
-
-export const getAuth = async (): Promise<AuthProps> => {
-    return await getItemByKey(keys.auth)
+type Product = {
+    id?: number
+    name: string
+    quantity: number
+    unityPrice: number
 }
 
-export const getToken = async (): Promise<string> => {
-    const auth: AuthProps = await getItemByKey(keys.auth)
-
-    return auth.access_token
+type Login = {
+    cpf: string
+    password: string
+    lastAccess: string
+}
+export const saveLogin = async (login: Login) => {
+    await saveItemByKey(keys.login, login)
 }
 
-export const getRefreshToken = async (): Promise<string> => {
-    const auth: AuthProps = await getItemByKey(keys.auth)
-
-    return auth.refresh_token
+export const getLogin = async (): Promise<Login> => {
+    return await getItemByKey(keys.login)
 }
 
-export const getHistoryMaas = async () => {
-    const historyMaas = await getItemByKey(keys.historyMaas)
-    return historyMaas
+export const getProducts = async () => {
+    let products = await getItemByKey(keys.products) || []
+    if (isEmpty(products)) {
+        return []
+    }
+    return products
 }
 
-export const setHistoryMaas = async (maasList) => {
-    await saveItemByKey(keys.historyMaas, maasList)
+export const addProduct = async (newProduct: Product) => {
+    let products = await getProducts()
+    products.push({ ...newProduct, id: products.length + 1 })
+    await saveItemByKey(keys.products, products)
 }
 
-export const getHistoryCrashState = async () => {
-
-    const historyCrashState = await getItemByKey(keys.historyCrashState)
-    return historyCrashState
+export const removeProduct = async (productId: number) => {
+    let products = await getProducts()
+    let newProducts = products.filter((item) => item.id !== productId)
+    await saveItemByKey(keys.products, newProducts)
+    return newProducts
 }
 
-export const setHistoryCrashState = async (stateCrashList) => {
-    await saveItemByKey(keys.historyCrashState, stateCrashList)
+export const changeQuantityProduct = async (productId: number, newQuantity: number) => {
+    let products = await getProducts()
+    let productToChange = products.find((item) => item.id === productId)
+    productToChange.quantity = newQuantity
+    await saveItemByKey(keys.products, products)
+    return products
 }
 
 export const clear = async () => {
-    await saveItemByKey(keys.auth, '')
-    await saveItemByKey(keys.avatar, '')
+    await saveItemByKey(keys.products, '')
 }
 
 export default {
-    setAuth,
-    getAuth,
-    getToken,
+    saveLogin,
+    getLogin,
+    getProducts,
+    addProduct,
+    removeProduct,
+    changeQuantityProduct,
     clear,
 }

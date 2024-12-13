@@ -1121,6 +1121,10 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - RNKeychain (9.2.2):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - RNReanimated (3.15.5):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1225,6 +1229,7 @@ DEPENDENCIES:
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -1350,6 +1355,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1423,6 +1430,7 @@ SPEC CHECKSUMS:
   RNBootSplash: 66c8458007bda40cc25a3f25e4326244a71d9a73
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNGestureHandler: bb81850add626ddd265294323310fec6e861c96b
+  RNKeychain: 4b4e8c588f3d4bdc82aeaabd3078b11701f130a0
   RNReanimated: a98c639fc19c83510d510cc4d952ca6960e9c22e
   RNScreens: 29418ceffb585b8f0ebd363de304288c3dce8323
   RNSVG: 4590aa95758149fa27c5c83e54a6a466349a1688
